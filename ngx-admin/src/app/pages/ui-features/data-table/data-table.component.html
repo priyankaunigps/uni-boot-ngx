@@ -1,0 +1,27 @@
+<div >
+  <mat-table [dataSource]="dataSource">
+
+    <ng-container matColunmDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let resource">{{resource.id}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColunmDef="status">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let resource">{{resource.status}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColunmDef="date">
+      <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+      <mat-cell *matCellDef="let resource">{{resource.date}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColunmDef="amount">
+      <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+      <mat-cell *matCellDef="let resource">{{resource.amount}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColums" color="primary"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColums"></mat-row>
+  </mat-table>
+</div>

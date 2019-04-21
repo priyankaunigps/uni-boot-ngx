@@ -3,28 +3,24 @@ import { NgModule } from '@angular/core';
 import { ThemeModule } from '../../@theme/theme.module';
 import { UiFeaturesRoutingModule } from './ui-features-routing.module';
 import { UiFeaturesComponent } from './ui-features.component';
-import { GridComponent } from './grid/grid.component';
-import { IconsComponent } from './icons/icons.component';
-import { TypographyComponent } from './typography/typography.component';
-import { SearchComponent } from './search-fields/search-fields.component';
-import { TableComponent } from './table/table.component';
+import { DataTableComponent } from './data-table/data-table.component';
+import { MatTableModule, MatSortModule, MatPaginatorModule } from '@angular/material';
 
 const components = [
   UiFeaturesComponent,
-  GridComponent,
-  IconsComponent,
-  TypographyComponent,
-  SearchComponent,
+  DataTableComponent
 ];
 
 @NgModule({
   imports: [
     ThemeModule,
     UiFeaturesRoutingModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
   ],
   declarations: [
     ...components,
-    TableComponent,
   ],
 })
 export class UiFeaturesModule { }

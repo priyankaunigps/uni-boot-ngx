@@ -23,6 +23,7 @@ ngOnInit() {
       return;
     }
     this.dataSource.data = results;
+    console.log(JSON.stringify(results));
   })
 
 }

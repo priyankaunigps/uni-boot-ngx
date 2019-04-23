@@ -4,7 +4,7 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { UiFeaturesRoutingModule } from './ui-features-routing.module';
 import { UiFeaturesComponent } from './ui-features.component';
 import { DataTableComponent } from './data-table/data-table.component';
-import { MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatProgressSpinnerModule, MatCheckboxModule } from '@angular/material';
 
 const components = [
   UiFeaturesComponent,
@@ -20,10 +20,14 @@ const components = [
     MatPaginatorModule,
     MatInputModule,
     MatProgressSpinnerModule,
-    CdkTableModule
+    MatCheckboxModule,
+   
   ],
   declarations: [
     ...components,
   ],
+  exports:[
+    ...components,
+  ]
 })
 export class UiFeaturesModule { }

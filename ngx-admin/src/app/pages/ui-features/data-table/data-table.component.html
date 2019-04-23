@@ -1,32 +1,51 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<div class="ngx-data-table">
+
+  <div class="spinner-container" *ngIf="dataSource.loading$ | async">
+      <mat-spinner></mat-spinner>
+  </div>
+
+  <div fxLayout fxFlex="40%" fxLayoutAlign="center center">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+
+<table mat-table class="data-table mat-elevation-z8" [dataSource]="dataSource" matSort>
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
   <!-- Position Column -->
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
     <td mat-cell *matCellDef="let row"> {{row.id}} </td>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
     <td mat-cell *matCellDef="let row"> {{row.status}} </td>
   </ng-container>
 
   <!-- Weight Column -->
   <ng-container matColumnDef="date">
-    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
     <td mat-cell *matCellDef="let row"> {{row.date}} </td>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="amount">
-    <th mat-header-cell *matHeaderCellDef> Amount </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
     <td mat-cell *matCellDef="let row"> {{row.amount}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></tr>
+
 </table>
+<mat-paginator #pagination
+                   [length]="length"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="pageEvent = loadData($event)">
+    </mat-paginator>
+    </div>

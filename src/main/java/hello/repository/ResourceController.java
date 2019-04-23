@@ -20,13 +20,14 @@ private ResourceRepository resourceRepository;
 
 @GetMapping(path="/add") // Map ONLY GET Requests
 public @ResponseBody String addNewResource (@RequestParam String status
-	, @RequestParam String date) {
+	, @RequestParam String date, @RequestParam Integer amount) {
 // @ResponseBody means the returned String is the response, not a view name
 // @RequestParam means it is a parameter from the GET or POST request
 
 Resource n = new Resource();
 n.setstatus(status);
 n.setdate(date);
+n.setamount(amount);
 resourceRepository.save(n);
 return "Saved";
 }

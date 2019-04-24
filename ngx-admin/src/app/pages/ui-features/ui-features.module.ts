@@ -5,6 +5,7 @@ import { UiFeaturesRoutingModule } from './ui-features-routing.module';
 import { UiFeaturesComponent } from './ui-features.component';
 import { DataTableComponent } from './data-table/data-table.component';
 import { MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatProgressSpinnerModule, MatCheckboxModule } from '@angular/material';
+import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 
 const components = [
   UiFeaturesComponent,
@@ -21,6 +22,9 @@ const components = [
     MatInputModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule
+    
    
   ],
   declarations: [

@@ -4,7 +4,7 @@ import 'rxjs/add/observable/of';
 import { ResourceService } from './resource.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Resource } from './resource';
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @Component({
@@ -19,6 +19,7 @@ export class DataTableComponent implements OnInit {
   displayedColumns = ['select','id', 'status', 'date', 'amount'];
 
   selection = new SelectionModel<any>(true, []);
+  selectedRows;
 
   length: number;
   pageSize: number = 10;
@@ -27,6 +28,8 @@ export class DataTableComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  previous: number;
+  originalDataSet: any;
 
   constructor(private resourceService: ResourceService) { }
 
@@ -44,7 +47,7 @@ export class DataTableComponent implements OnInit {
     this.resourceService.getResource().subscribe(results => {
       if (!results) {
         this.masterToggle = this.dataSource['result']
-        this.isAllSelected.length;
+
         this.applyFilter.length;
         this.dataSource.sort = this.sort;
         this.length = this.dataSource['results']
@@ -62,11 +65,18 @@ export class DataTableComponent implements OnInit {
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
+
   masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
         this.dataSource.data.forEach(row => this.selection.select(row));
+
+     this.selectedRows = JSON.stringify(this.selection.selected); 
   }
+  isSomeSelected() {
+    return this.selection.selected.length > 0;
+  }
+  
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // Datasource defaults to 
@@ -86,6 +96,7 @@ export class DataTableComponent implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
+  
 }
   
 

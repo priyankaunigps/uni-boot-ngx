@@ -4,7 +4,8 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { UiFeaturesRoutingModule } from './ui-features-routing.module';
 import { UiFeaturesComponent } from './ui-features.component';
 import { DataTableComponent } from './data-table/data-table.component';
-import { MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatProgressSpinnerModule, MatCheckboxModule } from '@angular/material';
+import { MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatProgressSpinnerModule, 
+  MatCheckboxModule, MatButtonModule } from '@angular/material';
 import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 
 const components = [
@@ -23,7 +24,8 @@ const components = [
     MatProgressSpinnerModule,
     MatCheckboxModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule
     
    
   ],

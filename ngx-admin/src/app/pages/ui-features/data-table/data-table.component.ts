@@ -54,7 +54,8 @@ export class DataTableComponent implements OnInit {
         return;
       }
       this.dataSource.data = results;
-      console.log(JSON.stringify(results));
+      // console.log(JSON.stringify(results));
+
     });
     this.applyFilter= this.applyFilter;
     this.dataSource.sort = this.sort;
@@ -86,9 +87,17 @@ export class DataTableComponent implements OnInit {
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
-  
+  payAmount(){
+    console.log("payment is being done");
+    this.selection.selected.forEach((item)=>{
+
+    });
+    this.resourceService.postResource(this.selection.selected);
+  }
   onRowClicked(row) {
     console.log('Row clicked: ', row);
+
+
   }
   checkboxLabel(row?: Resource): string {
     if (!row) {

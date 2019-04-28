@@ -5,6 +5,7 @@ import { Resource } from './resource';
 
 @Injectable()
 export class ResourceService {
+  findIndex: any;
   postResource(resources) {
     let postURL="http://localhost:8080/demo/resource";
     this.http.post(postURL,resources).subscribe((result)=>{
@@ -19,6 +20,12 @@ export class ResourceService {
 
   getResource(): Observable<Resource[]> {
     return this.http.get<Resource[]>(this.resourceUrl);
+  }
+  deleteResource(id) {
+    let deletetURL="http://localhost:8080/demo/resource/"+id;
+    this.http.delete(deletetURL).subscribe((result)=>{
+      console.log("Result: "+result);
+    });
   }
 
 }

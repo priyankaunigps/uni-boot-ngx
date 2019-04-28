@@ -2,9 +2,12 @@ import { Component, OnInit, ViewChild, } from '@angular/core';
 import { MatTableDataSource, MatSort, PageEvent, MatPaginator, MatInputModule } from '@angular/material';
 import 'rxjs/add/observable/of';
 import { ResourceService } from './resource.service';
-import { SelectionModel } from '@angular/cdk/collections';
+import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { Resource } from './resource';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { Identifiers, isNgTemplate } from '@angular/compiler';
+import { RowContext } from '@angular/cdk/table';
+import { RouterLinkWithHref } from '@angular/router';
 
 
 @Component({
@@ -14,13 +17,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   styleUrls: ['./data-table.component.scss']
 })
 export class DataTableComponent implements OnInit {
+  [x: string]: any;
   dataSource = new MatTableDataSource();
   pageEvent: PageEvent;
   displayedColumns = ['select','id', 'status', 'date', 'amount'];
-
+  data = Object.assign(DataSource)
   selection = new SelectionModel<any>(true, []);
-  selectedRows;
-
+ 
+ 
+  
   length: number;
   pageSize: number = 10;
   pageIndex: number = 1;
@@ -30,8 +35,11 @@ export class DataTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   previous: number;
   originalDataSet: any;
+  selectedRow;
 
-  constructor(private resourceService: ResourceService) { }
+  constructor(private resourceService: ResourceService) { 
+    console.log(this.data);
+  }
 
 
   ngOnInit() {
@@ -47,7 +55,7 @@ export class DataTableComponent implements OnInit {
     this.resourceService.getResource().subscribe(results => {
       if (!results) {
         this.masterToggle = this.dataSource['result']
-
+        this.dataSource = new MatTableDataSource(DataSource.data.slice());
         this.applyFilter.length;
         this.dataSource.sort = this.sort;
         this.length = this.dataSource['results']
@@ -83,10 +91,6 @@ export class DataTableComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to 
     this.dataSource.filter = filterValue;
   }
-  private newMethod(numSelected: number) {
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
   payAmount(){
     console.log("payment is being done");
     this.selection.selected.forEach((item)=>{
@@ -94,12 +98,27 @@ export class DataTableComponent implements OnInit {
     });
     this.resourceService.postResource(this.selection.selected);
   }
-  onRowClicked(row) {
-    console.log('Row clicked: ', row);
+  
+  //onRowClicked(row) {
+   // console.log('Row clicked: ', row);
+    //this.selectedRow = row;
+
+ // }
+ removeSelectedRows() {
+
+  this.selection.selected.forEach(item => {
+    let index: number = this.dataSource.data.findIndex(d => d === item);
+    console.log(this.dataSource.data.findIndex(d => d === item));
+    this.dataSource.data.splice(index,1)
+    window.alert("selected row is delete");
+    this.dataSource = new MatTableDataSource<any>(this.dataSource.data);
+  });
+  this.resourceService.deleteResource(this.selection.selected);
+  this.selection = new SelectionModel<any>(true, []);
+}
 
 
-  }
-  checkboxLabel(row?: Resource): string {
+  checkboxLabel(row?: Resource): string {window.alert
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }

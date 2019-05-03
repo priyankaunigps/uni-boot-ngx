@@ -16,6 +16,8 @@ import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceService } from './pages/ui-features/data-table/resource.service';
 
+import {NguiMapModule} from '@ngui/map';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -27,10 +29,11 @@ import { ResourceService } from './pages/ui-features/data-table/resource.service
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
+    NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?libraries=visualization,places,drawing&key=AIzaSyC5BiBXy8ftEwTN6vnkN-Kb4g-GdzSYFfo'}),
   ],
   bootstrap: [AppComponent],
   providers: [
-    { provide: APP_BASE_HREF, useValue: '/' },ResourceService
+    { provide: APP_BASE_HREF, useValue: '/' },ResourceService,
   ],
 })
 export class AppModule {

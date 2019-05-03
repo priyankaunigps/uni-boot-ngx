@@ -6,3 +6,10 @@ button{
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+nb-card-body {
+  padding: 0;
+}
+agm-map {
+  width: 100%;
+  height: nb-theme(card-height-large);
+}

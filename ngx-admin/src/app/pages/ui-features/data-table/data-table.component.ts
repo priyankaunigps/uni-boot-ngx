@@ -4,10 +4,10 @@ import 'rxjs/add/observable/of';
 import { ResourceService } from './resource.service';
 import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { Resource } from './resource';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { Identifiers, isNgTemplate } from '@angular/compiler';
-import { RowContext } from '@angular/cdk/table';
-import { RouterLinkWithHref } from '@angular/router';
+
+
+
+
 
 
 @Component({
@@ -111,9 +111,12 @@ export class DataTableComponent implements OnInit {
     console.log(this.dataSource.data.findIndex(d => d === item));
     this.dataSource.data.splice(index,1)
     window.alert("selected row is delete");
-    this.dataSource = new MatTableDataSource<any>(this.dataSource.data);
+    // this.dataSource = new MatTableDataSource<any>(this.dataSource.data);
+    this.resourceService.deleteResource(item.id);
   });
-  this.resourceService.deleteResource(this.selection.selected);
+  this.dataSource = new MatTableDataSource<any>(this.dataSource.data);
+  
+
   this.selection = new SelectionModel<any>(true, []);
 }
 

@@ -17,6 +17,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'table',
         link: '/pages/ui-features/table',
       },
+      {
+        title: 'assest',
+        link: '/pages/ui-features/assest',
+      },
 
     ],
   },

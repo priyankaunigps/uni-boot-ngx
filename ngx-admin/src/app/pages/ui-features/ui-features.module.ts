@@ -7,10 +7,17 @@ import { DataTableComponent } from './data-table/data-table.component';
 import { MatTableModule, MatSortModule, MatPaginatorModule, MatInputModule, MatProgressSpinnerModule, 
   MatCheckboxModule, MatButtonModule, MatIconModule, MatTooltipModule } from '@angular/material';
 import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
+import { GooglemapComponent } from './googlemap/googlemap.component';
+import { NguiMapModule } from '@ngui/map';
+import { AssestComponent } from './speedchart/assest.component';
+
 
 const components = [
   UiFeaturesComponent,
-  DataTableComponent
+  DataTableComponent,
+  AssestComponent,
+  GooglemapComponent,
+  
 ];
 
 @NgModule({
@@ -27,14 +34,15 @@ const components = [
     ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
-    MatTooltipModule
-   
+    MatTooltipModule,
+    NguiMapModule,
   ],
   declarations: [
     ...components,
   ],
   exports:[
     ...components,
+   
   ]
 })
 export class UiFeaturesModule { }

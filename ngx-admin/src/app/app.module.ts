@@ -15,8 +15,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceService } from './pages/ui-features/data-table/resource.service';
+import {ChartModule } from 'angular-highcharts';
+
+
 
 import {NguiMapModule} from '@ngui/map';
+import { EventsService } from './pages/ui-features/speedchart/events.service';
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +31,7 @@ import {NguiMapModule} from '@ngui/map';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    ChartModule,
 
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
@@ -33,7 +40,7 @@ import {NguiMapModule} from '@ngui/map';
   ],
   bootstrap: [AppComponent],
   providers: [
-    { provide: APP_BASE_HREF, useValue: '/' },ResourceService,
+    { provide: APP_BASE_HREF, useValue: '/' },ResourceService,EventsService
   ],
 })
 export class AppModule {

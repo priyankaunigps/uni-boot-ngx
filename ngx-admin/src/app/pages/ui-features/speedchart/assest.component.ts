@@ -1,4 +1,7 @@
 import { Component, OnInit} from '@angular/core';
+import {EventsService } from './events.service';
+
+
 
 @Component({
     selector: 'ngx-assest',
@@ -7,8 +10,10 @@ import { Component, OnInit} from '@angular/core';
     styleUrls: ['./assest.component.scss']
   })
   export class AssestComponent {
-    ngOnInit() {
-    
-    }
+  
+constructor () {
+      
 
+    }
+    ngOnInit() { }
   }

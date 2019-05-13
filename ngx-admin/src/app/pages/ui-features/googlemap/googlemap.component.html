@@ -1,3 +1,14 @@
- <ngui-map center="India" class="map" [fullscreenControl]="true" [scaleControl]="true"
-scrollwheel="true">
+
+ <ngui-map 
+ zoom="13" 
+ center="10.775, 80.434" 
+ (mapReady$)="onMapReady($event,map)"
+ (idle)="onIdle($event)"
+ (mapClick)="onMapClick($event)"
+ mapTypeId="satellite">
+   <ng-container *ngIf="events">
+    <marker *ngFor="let pos of events" 
+    [position]="pos"
+    (initialized$)="onMarkerInit($event)"></marker>
+   </ng-container>
 </ngui-map>

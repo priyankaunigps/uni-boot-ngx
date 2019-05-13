@@ -36,7 +36,7 @@ import { AgmCoreModule } from '@agm/core';
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
-    NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?libraries=visualization,places,drawing&key=AIzaSyDV8ye3Q08_OoOqc5J3Rk0bgd_FF4iGvgU'}),
+    NguiMapModule.forRoot({ apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyCMo0vLCwSoROhAQNhqmVD7VEpiwbK5mNk'}),
   ],
   bootstrap: [AppComponent],
   providers: [
